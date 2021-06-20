@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid rgb(92, 91, 55);
+}
+</style>
+<head>
+    <title>PURCHASE PREDICTION</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        CUSTOMER_SINCE:
+        <input name="CUSTOMER_SINCE" type="number" required>
+        <br>
+        <br> OCCUPATION:
+        <input name="OCCUPATION" type="number" required>
+        <br>
+        <br> PAST_PURCHASE_Normalised:
+        <input name="PAST_PURCHASE_Normalised" type="number" required>
+        <br>
+        <br> AGE_Normalised:
+        <input name="AGE_Normalised" type="number" required>
+        <br>
+        <br> INCOME_GROUP:
+        <input name="INCOME_GROUP" type="number" required>
+        <br>
+        <br>LOYALTY_PROGRAM:
+        <input name="LOYALTY_PROGRAM" type="number" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br>Will the Person Purchase:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
